@@ -3,92 +3,23 @@ const cors = require("cors");
 
 const app = express();
 
-
 app.use(cors());
 
 app.use(express.json()); // When we want to be able to accept JSON.
 
 app.get("/api/compliment", (req, res) => {
-  const compliments = ["Gee, you're a smart cookie!",
-					 "Cool shirt!",
-					 "Your Javascript skills are stellar.",
-  ];
+  const compliments = ["Gee, you're a smart cookie!","Cool shirt!","Your Javascript skills are stellar.",];res.status(200).send(complements[Math.floor(Math.random()*complements.length)]);});
 
+app.get("/api/insults", (res) => {
+  const insultList = ['Youre so cool, youre like a dude in a girls body.','You look good for your age.','I love how you just dont care what you look like.','You look nothing like your pictures.','I always feel more intelligent after reading your code.','Your new haircut makes your nose look smaller.','That’s a beautiful photo of you. I didnt even recognise you','You’re really funny… in your own way.','You’re not as dumb as you look.'];res.status(200).send(insultList[Math.floor(Math.random()*insultList.length)]);}
+);
 
-  
-  // choose random compliment
-  let randomIndex = Math.floor(Math.random() * compliments.length);
-  let randomCompliment = compliments[randomIndex];
+app.get("/api/8ball", (res) => {
+  let responce = ['It is certain.','It is decidedly so.','Without a doubt.','Yes definitely.','You may rely on it.','As I see it, yes.','Most likely.','Outlook good.','Yes.','Signs point to yes.','Reply hazy, try again.','Ask again later.','Better not tell you now.','Cannot predict now.','Concentrate and ask again.','Dont count on it.', 'My reply is no.','My sources say no.',' Outlook not so good','Very doubtful.'
+];res.status(200).send(responce[Math.floor(Math.random()*responce.length)]);});
 
-  res.status(200).send(randomCompliment);
-  
-});
-
-
-app.get("/api/insults", (req, res) => {
-  const insultList = ['Youre so cool, youre like a dude in a girls body.',
-'You look good for your age.',
-'I love how you just dont care what you look like.',
-'You look nothing like your pictures.',
-'I always feel more intelligent after reading your code.',
-'Your new haircut makes your nose look smaller.',
-'That’s a beautiful photo of you. I didnt even recognise you',
-'You’re really funny… in your own way.',
-'You’re not as dumb as you look.'
-
-
-  ];
-
-
-  
-  // choose random compliment
-  let randomIndex = Math.floor(Math.random() * insultList.length);
-  let randomInsults = insultList[randomIndex];
-
-  res.status(200).send(randomInsults);
-  
-});
-
-
-app.get("/api/8ball", (req, res) => {
-  const responce = ['It is certain.',
-    'It is decidedly so.',
-    'Without a doubt.',
-    'Yes definitely.',
-    'You may rely on it.',
-    
-    'As I see it, yes.',
-    'Most likely.',
-    'Outlook good.',
-    'Yes.',
-    'Signs point to yes.',
-    
-    'Reply hazy, try again.',
-    'Ask again later.',
-    'Better not tell you now.',
-    'Cannot predict now.',
-    'Concentrate and ask again.',
-    
-    'Dont count on it.',
-    'My reply is no.',
-     'My sources say no.',
-    ' Outlook not so good.',
-    'Very doubtful.'
-  ];
-
-
-  
-  // choose random responce
-  let randomIndex = Math.floor(Math.random() * responce.length);
-  let randomResponce = responce[randomIndex];
-
-  res.status(200).send(randomResponce);
-  
-});
-
-
-app.get("/api/weird", (req, res) => {
-  const weird = ['Theres a company that turns dead bodies into an ocean reef.',
+app.post("/api/weird", (res) => {
+  let weird = ['Theres a company that turns dead bodies into an ocean reef.',
   'The name "bonobo" resulted from a misspelling.',
   'There is an annual Coffee Break Festival.',
   'You can buy a flying bicycle.',
@@ -238,21 +169,10 @@ app.get("/api/weird", (req, res) => {
 '69. The “butterflies” you get in your stomach when you see someone you like is actually a stress response called adrenaline.',
 
 '70. Pure cocoa can help prevent tooth decay',
-  ];
+];res.status(200).send(weird[Math.floor(Math.random()*weird.length)]);});
 
-
-  
-  // choose random compliment
-  let randomIndex = Math.floor(Math.random() * weird.length);
-  let randomWeird = weird[randomIndex];
-
-  res.status(200).send(randomWeird);
-  
-});
-
-
-app.get("/api/fortune", (req, res) => {
-  const fortune = ['A beautiful, smart, and loving person will be coming into your life.',
+app.put("/api/fortune", (res) => {
+  let fortune = ['A beautiful, smart, and loving person will be coming into your life.',
     'A dubious friend may be an enemy in camouflage.',
     'A faithful friend is a strong defense.',
     'A feather in the hand is better than a bird in the air. (2)',
@@ -305,16 +225,7 @@ app.get("/api/fortune", (req, res) => {
     'Change is happening in your life, so go with the flow!',
     'Competence like yours is underrated.,',
   ];
-
-
-  
-  // choose random fortune
-  let randomIndex = Math.floor(Math.random() * fortune.length);
-  let randomFortune = fortune[randomIndex];
-
-  res.status(200).send(randomFortune);
-  
-});
-
+  delete fortune
+  res.status(200).send(fortune[Math.floor(Math.random()*fortune.length)]);});
 
 app.listen(4000, () => console.log("Server running on 4000"));
